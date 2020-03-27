@@ -1,2 +1,2 @@
-# gmq
-mqtt broker by go
+# gmqtt
+mqtt server by go
