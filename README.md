@@ -4,10 +4,10 @@ mqtt server by go
 ## 引用项目如下：
 > github.com/gorilla/websocket  websocket开源代码，用于处理mqtt客户端使用websocket进行连接
 > github.com/Unknwon/goconfig   配置文件读取
-
 > github.com/eclipse/paho.mqtt.golang   mqtt协议解析，这里copy了代码做了部分修改
-一并表示感谢
-写的不好，持续优化中，谨慎使用。
+> 一并表示感谢
+
+写的不好,轻喷，持续优化中，谨慎使用。
 
 ## License
 Copyright (c) 2014 Dataence, LLC. All rights reserved.
