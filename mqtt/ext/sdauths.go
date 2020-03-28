@@ -11,7 +11,7 @@ type SdAuths struct{
 }
 
 func (auths *SdAuths) Login() byte  {
-	if(auths.UserName == ""){
+	if(config.USERNAME == ""){
 		return packets.Accepted
 	}
 

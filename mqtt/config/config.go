@@ -15,7 +15,8 @@ var (
 	PASSWORD		string
 	TLSENABLE		bool
 	TLSCRTPATH		string
-	TLSKEYPATH		string		
+	TLSKEYPATH		string	
+	HTTP_PORT		int//接口端口	
 )
 
 //配置以及配置文件初始化目录
@@ -44,5 +45,7 @@ func InitConf() {
 	USERNAME,_ = cfg.GetValue("user","username")
 	PASSWORD,_ = cfg.GetValue("user","password")
 
-	
+	//http
+	httpPort,_ := cfg.GetValue("http","http_port")
+	HTTP_PORT,_ = strconv.Atoi(httpPort)
 }

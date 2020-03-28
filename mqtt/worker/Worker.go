@@ -96,8 +96,10 @@ func (worker *Worker) Process(pack packets.ControlPacket)  {
 			//检查用户密码
 			auths := &ext.SdAuths{connectPacket.Username,connectPacket.Password}
 			if auths.Login() != packets.Accepted {
+				ctBack.(*packets.ConnackPacket).ReturnCode = packets.ErrRefusedBadUsernameOrPassword
 				worker.responseData(ctBack)
 				worker.Close();
+				return
 			}
 			worker.clientId = connectPacket.GetClientIdentifier()
 			worker.version = connectPacket.ProtocolVersion

@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+//ws connection implements connection
 type WsConnection struct{
 	Conn      *websocket.Conn
 }

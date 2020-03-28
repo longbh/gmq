@@ -15,7 +15,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-//tlstcp启动
+//tcp启动
 func NewMaster() {
 	udpaddr, err := net.ResolveTCPAddr("tcp4", fmt.Sprintf("%s:%d", config.HOST, config.TCP_PORT));
 	cashError(err)
@@ -34,7 +34,7 @@ func NewMaster() {
 	}
 }
 
-//tcp启动
+//tcp tls启动
 func NewTlsMaster() {
 	crt, err := tls.LoadX509KeyPair(config.TLSCRTPATH, config.TLSKEYPATH)
 	if err != nil {

@@ -3,7 +3,7 @@ package connect
 import (
 )
 
-//链接接口
+//connection interface
 type Connect interface {
 	Write(data []byte) (int, error)
 	Read() ([]byte, error)

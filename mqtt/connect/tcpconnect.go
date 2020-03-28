@@ -5,6 +5,7 @@ import (
 	"mqtt/mqtt/config"
 )
 
+//tcp connection implements connection
 type TcpConnection struct{
 	Conn      net.Conn
 }
