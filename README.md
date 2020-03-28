@@ -6,6 +6,11 @@ mqtt server by go
 > github.com/Unknwon/goconfig   配置文件读取
 > github.com/eclipse/paho.mqtt.golang   mqtt协议解析，这里copy了代码做了部分修改
 > 一并表示感谢
+## 功能完善中：
+> 消息存储
+> topic管理优化
+> brage集群消息互通
+> http管理接口编写
 
 写的不好,轻喷，持续优化中，谨慎使用。
 
