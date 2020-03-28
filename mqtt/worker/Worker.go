@@ -2,13 +2,13 @@ package worker
 
 import (
 	"bytes"
-	"mqtt/mqtt/packets"
-	"mqtt/mqtt/message"
-	"mqtt/mqtt/ext"
-	"mqtt/mqtt/connect"
+	"gmq/mqtt/packets"
+	"gmq/mqtt/message"
+	"gmq/mqtt/ext"
+	"gmq/mqtt/connect"
 	"time"
 	"log"
-	"mqtt/mqtt/topic"
+	"gmq/mqtt/topic"
 	"sync/atomic"
 )
 
@@ -105,9 +105,11 @@ func (worker *Worker) Process(pack packets.ControlPacket)  {
 			worker.version = connectPacket.ProtocolVersion
 			worker.versionName = connectPacket.ProtocolName
 			worker.idleTime = connectPacket.Keepalive
+			worker.messageWindow.ClientIds = connectPacket.GetClientIdentifier()
 			NewConnection(connectPacket.GetClientIdentifier(),worker)
 			worker.timer = time.NewTimer(time.Second * 5)
 			go worker.timerLoop()
+			go worker.messageWindow.ReadList(connectPacket.CleanSession)
 			worker.responseData(ctBack)
 		} else {
 			worker.Close()
@@ -121,8 +123,6 @@ func (worker *Worker) Process(pack packets.ControlPacket)  {
 		topicName := connectPacket.TopicName
 		clientIdArr := topic.SearchClientIds(topicName)
 		for topic,qos := range clientIdArr{
-		// for e := clientIdArr.Front(); e != nil; e = e.Next() {
-		//	log.Print("====" + topic) //输出list的值,01234
 			connectPacket.Qos = qos
 			worker.PushToClients(topic,connectPacket,topicName)
 		}
@@ -171,11 +171,12 @@ func (worker *Worker) PushToClients(clientIds string,fromPacket *packets.Publish
 	publishPacket.Payload = fromPacket.Payload
 	publishPacket.TopicName = topic
 	publishPacket.Qos = fromPacket.Qos
-	worker.messageWindow.Push(publishPacket)
 	byteBuff := make([] byte, 0,0)
 	buffer := bytes.NewBuffer(byteBuff);
 	publishPacket.Write(buffer)
-	go GetConnection(clientIds).Write(buffer.Bytes())
+	workerTo := GetConnection(clientIds)
+	workerTo.messageWindow.Push(publishPacket)
+	go workerTo.Write(buffer.Bytes())
 }
 
 func (worker *Worker) responseData(ctBack packets.ControlPacket){
@@ -193,7 +194,8 @@ func (worker *Worker) Close() {
 	if worker.timer != nil{
 		worker.timer.Stop()
 	}
-	
+
+	worker.messageWindow.Store()
 	//clear all topic suscribe
 	for key := range worker.topics{
 		topic.RemoveTopicOne(key,worker.clientId)

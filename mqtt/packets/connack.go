@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"mqtt/mqtt/utils"
+	"gmq/mqtt/utils"
 )
 
 //ConnackPacket is an internal representation of the fields of the

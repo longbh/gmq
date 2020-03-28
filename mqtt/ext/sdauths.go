@@ -1,8 +1,8 @@
 package ext
 
 import (
-	"mqtt/mqtt/config"
-	"mqtt/mqtt/packets"
+	"gmq/mqtt/config"
+	"gmq/mqtt/packets"
 )
 
 type SdAuths struct{

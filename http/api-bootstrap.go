@@ -3,9 +3,9 @@ package http
 import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/logger"
-	"mqtt/http/route"
-	"mqtt/http/controller"
-	"mqtt/mqtt/config"
+	"gmq/http/route"
+	"gmq/http/controller"
+	"gmq/mqtt/config"
 	"fmt"
 )
 

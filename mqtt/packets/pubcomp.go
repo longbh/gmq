@@ -3,7 +3,7 @@ package packets
 import (
 	"fmt"
 	"io"
-	"mqtt/mqtt/utils"
+	"gmq/mqtt/utils"
 )
 
 //PubcompPacket is an internal representation of the fields of the

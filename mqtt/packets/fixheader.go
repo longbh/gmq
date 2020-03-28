@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"mqtt/mqtt/utils"
+	"gmq/mqtt/utils"
 )
 
 //FixedHeader is a struct to hold the decoded information from

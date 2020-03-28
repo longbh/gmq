@@ -3,7 +3,7 @@ package routes
 import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/core/router"
-	"mqtt/http/controller"
+	"gmq/http/controller"
 )
 
 /**

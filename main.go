@@ -1,9 +1,9 @@
 package main
 
 import (
-	"mqtt/mqtt/config"
-	"mqtt/master"
-	"mqtt/http"
+	"gmq/mqtt/config"
+	"gmq/master"
+	"gmq/http"
 	"sync"
 )
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 	"time"
-	"mqtt/mqtt/utils"
+	"gmq/mqtt/utils"
 )
 
 //PublishPacket is an internal representation of the fields of the

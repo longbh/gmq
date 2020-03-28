@@ -2,7 +2,7 @@ package connect
 
 import (
 	"net"
-	"mqtt/mqtt/config"
+	"gmq/mqtt/config"
 )
 
 //tcp connection implements connection
